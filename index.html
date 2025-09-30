@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Tela inicial -->
+  <div class="intro-screen" id="introScreen">
+    <div class="intro-title">Sente a Pressão Nenem</div>
+    <button class="start-button" onclick="iniciarSite()">Clica aqui :D</button>
+  </div>
+
+  <header>
+    <div class="titulo-principal">FELIZ ANIVERSÁRIO!</div>
+    <div class="subtitulo">Hoje é dia de celebrar um guerreiro, um garoto de programa e um atleta nato! 💪</div>
+  </header>
+
+  <!-- Carrossel de Fotos -->
+  <div class="carousel-container">
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
+      <div class="carousel-slide">
+        <img id="carouselImage" src="foto1.jpg" alt="Foto especial">
+        <div class="carousel-caption" id="carouselCaption">Momentos</div>
+      </div>
+      <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
+    </div>
+    <div class="carousel-indicators" id="carouselIndicators"></div>
+  </div>
+
+  <div class="hero-section">
+    <div class="viking-quote">"Você não tem inimigos. Ninguém tem inimigos."</div>
+    <p style="font-size: 1.1em; line-height: 1.7;">
+      Inspirado em Thorfinn, você sabe que a verdadeira força não está apenas nos músculos, mas na disciplina, 
+      na persistência e na sabedoria. Cada linha de código é como uma batalha vencida, cada treino é uma 
+      conquista, e cada dia é uma nova saga sendo escrita.
+    </p>
+  </div>
+
+  <!-- Player de Música -->
+  <div class="music-player">
+    <div class="player-header">
+      <span class="player-icon">🎵</span>
+      <span class="player-title">Musica de Macho</span>
+    </div>
+    <div class="player-info">
+      <div id="currentSong">Carregando...</div>
+      <div class="player-controls">
+        <button onclick="previousSong()" class="control-btn">⏮️</button>
+        <button onclick="togglePlay()" class="control-btn play-btn" id="playBtn">▶️</button>
+        <button onclick="nextSong()" class="control-btn">⏭️</button>
+      </div>
+      <audio id="audioPlayer" loop></audio>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+    <div class="playlist">
+      <div class="playlist-title">📜 PLAYLIST</div>
+      <div id="playlistContainer"></div>
+    </div>
+  </div>
+
+  <div class="mensagem">
+    Mano, parabéns pelo seu dia! 🎉 Você é um cara que inspira em tudo: na academia, sempre se superando, e na programação, encarando problemas como se fossem desafios divertidos. É muito bom ver sua evolução. Como diria Thors em Vinland Saga: "Um verdadeiro guerreiro não precisa de espada." e você mostra isso com sua força de vontade e disciplina. Que esse novo ano traga ainda mais conquistas, crescimento e momentos bons. Tamo junto sempre, feliz aniversário, guerreiro! ⚔️💻💪
+
+  </div>
+
+
+
+  <div class="code-block">
+<span class="comment">//  Seu codigo de garoto de programa </span>
+<span class="keyword">class</span> <span class="string">Aniversariante</span> {
+  <span class="keyword">constructor</span>() {
+    <span class="keyword">this</span>.nome = <span class="string">"Meu Brother"</span>;
+    <span class="keyword">this</span>.idade = <span class="keyword">this</span>.idade + <span class="number">1</span>; <span class="comment">// Level up!</span>
+    <span class="keyword">this</span>.habilidades = [<span class="string">"Programação"</span>, <span class="string">"Calistenia"</span>, <span class="string">"Academia"</span>];
+    <span class="keyword">this</span>.animesFavoritos = [<span class="string">"Vinland Saga"</span>];
+  }
+
+  <span class="keyword">celebrar</span>() {
+    <span class="keyword">return</span> <span class="string">`Parabéns! +1 ano de experiência na vida!`</span>;
+  }
+
+  <span class="keyword">continuarEvoluindo</span>() {
+    <span class="keyword">while</span>(<span class="keyword">true</span>) {
+      <span class="keyword">this</span>.treinar();
+      <span class="keyword">this</span>.codar();
+      <span class="keyword">this</span>.assistirVinlandSaga();
+      <span class="keyword">this</span>.nivelDeEpicidade++;
+    }
+  }
+}
+
+<span class="keyword">const</span> hero = <span class="keyword">new</span> <span class="string">Aniversariante</span>();
+hero.<span class="keyword">celebrar</span>();
+  </div>
+
+
+  <div class="final-message">
+    <strong>Mensagem de macho:</strong><br><br>
+   Mano, a vida não é só vitória fácil, você sabe bem disso. Ela te testa o tempo todo, seja na academia quando parece que não vai sair mais uma repetição, seja na frente do computador quebrando a cabeça com código que insiste em dar erro. Mas não é sobre quantas vezes você acerta de primeira, e sim sobre quantas vezes você cai, respira fundo e continua.
+
+    Você já mostrou que tem essa força. Cada treino que você encara, cada bug que você resolve, prova que a sua maior arma é a determinação. E como diria o Rocky, não importa o quanto você aguenta bater, mas sim o quanto você aguenta apanhar e seguir em frente.
+
+    Então continua firme, irmão. A vida vai jogar peso, mas você tá pronto pra levantar tudo isso. Feliz aniversário, guerreiro!
+    <br><br>
+    <span style="font-size: 1.3em; color: #e94560;">
+      FELIZ ANIVERSÁRIO! 🎉⚔️💪💻
+    </span>
+  </div>
+
+  <footer>
+    comi o cu de quem ta lendo <3🚀
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

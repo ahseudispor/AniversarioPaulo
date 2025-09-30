@@ -1,0 +1,619 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0 20px 80px;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #eee;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animação de código caindo */
+.code-rain {
+  position: fixed;
+  top: -50px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #00ff41;
+  animation: cair 8s linear infinite;
+  user-select: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+@keyframes cair {
+  0% { transform: translateY(-100px); opacity: 0.8; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+header {
+  margin-top: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.titulo-principal {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 4em;
+  color: #00ff41;
+  text-shadow: 0 0 20px #00ff41, 2px 2px 4px #000;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+
+.subtitulo {
+  font-size: 1.4em;
+  color: #e94560;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px #000;
+}
+
+/* Carrossel de Fotos */
+.carousel-container {
+  margin: 40px auto;
+  max-width: 800px;
+  position: relative;
+  z-index: 10;
+}
+
+.carousel-wrapper {
+  position: relative;
+  background: rgba(22, 33, 62, 0.9);
+  border: 3px solid #00ff41;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 40px rgba(0, 255, 65, 0.4);
+  overflow: hidden;
+}
+
+.carousel-slide {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: opacity 0.5s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(233, 69, 96, 0.9);
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.3em;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 255, 65, 0.3);
+  border: 2px solid #00ff41;
+  color: #00ff41;
+  font-size: 2em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.carousel-btn:hover {
+  background: rgba(0, 255, 65, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.7);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid #00ff41;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.indicator:hover {
+  background: rgba(0, 255, 65, 0.5);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: #00ff41;
+  box-shadow: 0 0 10px #00ff41;
+}
+
+.hero-section {
+  margin: 40px auto;
+  max-width: 900px;
+  background: rgba(22, 33, 62, 0.8);
+  border: 3px solid #00ff41;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+  position: relative;
+  z-index: 10;
+}
+
+.viking-quote {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.8em;
+  color: #e94560;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000;
+  font-style: italic;
+}
+
+/* Player de Música */
+.music-player {
+  margin: 40px auto;
+  max-width: 600px;
+  background: rgba(22, 33, 62, 0.95);
+  border: 2px solid #00ff41;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+  position: relative;
+  z-index: 10;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.player-icon {
+  font-size: 2em;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.player-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.5em;
+  color: #00ff41;
+  letter-spacing: 2px;
+}
+
+.player-info {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#currentSong {
+  font-size: 1.2em;
+  color: #e94560;
+  margin-bottom: 15px;
+  font-weight: bold;
+  min-height: 30px;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.control-btn {
+  background: rgba(0, 255, 65, 0.2);
+  border: 2px solid #00ff41;
+  color: #00ff41;
+  font-size: 1.5em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:hover {
+  background: rgba(0, 255, 65, 0.4);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+.play-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.8em;
+  background: rgba(233, 69, 96, 0.3);
+  border-color: #e94560;
+  color: #e94560;
+}
+
+.play-btn:hover {
+  background: rgba(233, 69, 96, 0.5);
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff41, #e94560);
+  transition: width 0.1s linear;
+}
+
+.playlist {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.playlist.open {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.playlist-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.2em;
+  color: #00ff41;
+  margin-bottom: 15px;
+  cursor: pointer;
+  padding: 10px;
+  background: rgba(0, 255, 65, 0.1);
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.playlist-title:hover {
+  background: rgba(0, 255, 65, 0.2);
+}
+
+.playlist-item {
+  padding: 12px;
+  margin: 8px 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #00ff41;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.playlist-item:hover {
+  background: rgba(0, 255, 65, 0.1);
+  transform: translateX(5px);
+}
+
+.playlist-item.active {
+  background: rgba(233, 69, 96, 0.2);
+  border-left-color: #e94560;
+}
+
+.playlist-item .song-name {
+  color: #fff;
+  font-size: 1em;
+  margin-bottom: 3px;
+}
+
+.playlist-item .song-artist {
+  color: #aaa;
+  font-size: 0.85em;
+}
+
+.mensagem {
+  margin: 30px auto;
+  max-width: 850px;
+  font-size: 1.2em;
+  color: #eee;
+  background: linear-gradient(135deg, rgba(22, 33, 62, 0.9), rgba(15, 52, 96, 0.9));
+  padding: 30px;
+  border: 2px solid #00ff41;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  line-height: 1.8;
+  position: relative;
+  z-index: 10;
+}
+
+.icons-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 50px auto;
+  max-width: 1000px;
+}
+
+.icon-card {
+  background: rgba(22, 33, 62, 0.9);
+  border: 2px solid #e94560;
+  border-radius: 15px;
+  padding: 25px;
+  width: 200px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.icon-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+}
+
+.icon-card .emoji {
+  font-size: 3em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-card h3 {
+  color: #00ff41;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.icon-card p {
+  color: #ddd;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.code-block {
+  margin: 40px auto;
+  max-width: 800px;
+  background: #0d1117;
+  border: 2px solid #00ff41;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  font-size: 1em;
+  color: #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  position: relative;
+  z-index: 10;
+  overflow-x: auto;
+}
+
+.code-block .comment {
+  color: #8b949e;
+}
+
+.code-block .keyword {
+  color: #ff7b72;
+}
+
+.code-block .string {
+  color: #a5d6ff;
+}
+
+.code-block .number {
+  color: #79c0ff;
+}
+
+.workout-stats {
+  margin: 40px auto;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.stat-card {
+  background: rgba(233, 69, 96, 0.2);
+  border: 2px solid #e94560;
+  border-radius: 10px;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: scale(1.1);
+  background: rgba(233, 69, 96, 0.3);
+}
+
+.stat-card .number {
+  font-size: 2.5em;
+  color: #00ff41;
+  font-weight: bold;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.stat-card .label {
+  font-size: 1.1em;
+  color: #ddd;
+  margin-top: 5px;
+}
+
+.final-message {
+  margin: 50px auto 30px;
+  max-width: 800px;
+  font-size: 1.3em;
+  color: #00ff41;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border: 3px dashed #e94560;
+  border-radius: 15px;
+  line-height: 1.8;
+  position: relative;
+  z-index: 10;
+  animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: #e94560; }
+  50% { border-color: #00ff41; }
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 1.2em;
+  color: #00ff41;
+  font-style: italic;
+  position: relative;
+  z-index: 10;
+}
+
+.muscle-emoji {
+  display: inline-block;
+  animation: flex 1.5s infinite;
+}
+
+@keyframes flex {
+  0%, 100% { transform: scale(1) rotate(-5deg); }
+  50% { transform: scale(1.2) rotate(5deg); }
+}
+
+/* Botão inicial */
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.intro-screen.hidden {
+  display: none;
+}
+
+.start-button {
+  padding: 20px 50px;
+  font-size: 1.5em;
+  font-family: 'Bebas Neue', cursive;
+  background: linear-gradient(135deg, #e94560, #00ff41);
+  color: #000;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.start-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px rgba(0, 255, 65, 0.7);
+}
+
+.intro-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3em;
+  color: #00ff41;
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px #00ff41;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .titulo-principal {
+    font-size: 2.5em;
+  }
+  
+  .icons-section {
+    gap: 20px;
+  }
+  
+  .icon-card {
+    width: 150px;
+    padding: 20px;
+  }
+  
+  .music-player {
+    max-width: 90%;
+  }
+
+  .carousel-slide {
+    height: 350px;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+  }
+}
