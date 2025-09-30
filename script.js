@@ -14,21 +14,13 @@ const introSounds = [
   { file: "intro2.mp3" },
   { file: "intro3.mp3" }
 ];
-// Lista de fotos do carrossel - ADICIONE SUAS FOTOS AQUI
+
+// ===== LISTA DE FOTOS DO CARROSSEL =====
 const carouselImages = [
-  {
-    src: "foto1.jpg",
-    caption: "Momentos"
-  },
-  {
-    src: "foto2.jpg",
-    caption: "Guerreiro  ⚔️"
-  },
-  {
-    src: "foto3.jpg",
-    caption: "Campeão 💪"
-  }
-]
+  { src: "foto1.jpg", caption: "Momentos" },
+  { src: "foto2.jpg", caption: "Guerreiro ⚔️" },
+  { src: "foto3.jpg", caption: "Campeão 💪" }
+];
 
 // ===== VARIÁVEIS =====
 let currentSongIndex = 0;
@@ -231,11 +223,19 @@ function criarCodeRain() {
   }, 8000);
 }
 
-window.addEventListener('load', () => {
+// ===== INICIALIZAÇÃO (MELHORADO PARA MOBILE) =====
+document.addEventListener('DOMContentLoaded', () => {
   initPlaylist();
   loadSong(0);
   initCarouselIndicators();
   updateCarousel();
   startCarousel();
   setInterval(criarCodeRain, 300);
+
+  // 🔄 Garantia extra para mobile
+  setTimeout(() => {
+    if (!carouselInterval) {
+      startCarousel();
+    }
+  }, 2000);
 });
