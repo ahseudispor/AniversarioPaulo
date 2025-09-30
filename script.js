@@ -1,41 +1,21 @@
-// Lista de músicas - ADICIONE SUAS MÚSICAS AQUI
+// ===== PLAYLIST PRINCIPAL =====
 const playlist = [
-  {
-    file: "musica1.mp3"
-  },
-  {
-    file: "musica2.mp3"
-  },
-  {
-    file: "musica3.mp3"
-  },
-  {
-    file: "musica4.mp3"
-  },
-  {
-    file: "musica5.mp3"
-  },
-  {
-    file: "musica6.mp3"
-  }
+  { file: "musica1.mp3" },
+  { file: "musica2.mp3" },
+  { file: "musica3.mp3" },
+  { file: "musica4.mp3" },
+  { file: "musica5.mp3" },
+  { file: "musica6.mp3" }
 ];
 
-// Lista de fotos do carrossel - ADICIONE SUAS FOTOS AQUI
-const carouselImages = [
-  {
-    src: "foto1.jpg",
-    caption: "Momentos"
-  },
-  {
-    src: "foto2.jpg",
-    caption: "Guerreiro  ⚔️"
-  },
-  {
-    src: "foto3.jpg",
-    caption: "Campeão 💪"
-  }
+// ===== PLAYLIST DE INTRO =====
+const introSounds = [
+  { file: "intro1.mp3" },
+  { file: "intro2.mp3" },
+  { file: "intro3.mp3" }
 ];
 
+// ===== VARIÁVEIS =====
 let currentSongIndex = 0;
 let currentImageIndex = 0;
 let isPlaying = false;
@@ -59,8 +39,6 @@ function shuffle(array) {
 }
 
 // ===== FUNÇÕES DO CARROSSEL =====
-
-// Inicializar indicadores do carrossel
 function initCarouselIndicators() {
   carouselImages.forEach((_, index) => {
     const indicator = document.createElement('div');
@@ -71,60 +49,50 @@ function initCarouselIndicators() {
   });
 }
 
-// Atualizar imagem do carrossel
 function updateCarousel() {
   const image = carouselImages[currentImageIndex];
   carouselImage.style.opacity = '0';
-  
+
   setTimeout(() => {
     carouselImage.src = image.src;
     carouselCaption.textContent = image.caption;
     carouselImage.style.opacity = '1';
   }, 300);
 
-  // Atualizar indicadores
   document.querySelectorAll('.indicator').forEach((indicator, index) => {
     indicator.classList.toggle('active', index === currentImageIndex);
   });
 }
 
-// Mudar slide
 function changeSlide(direction) {
   currentImageIndex += direction;
-  
   if (currentImageIndex < 0) {
     currentImageIndex = carouselImages.length - 1;
   } else if (currentImageIndex >= carouselImages.length) {
     currentImageIndex = 0;
   }
-  
   updateCarousel();
   resetCarouselTimer();
 }
 
-// Ir para slide específico
 function goToSlide(index) {
   currentImageIndex = index;
   updateCarousel();
   resetCarouselTimer();
 }
 
-// Iniciar carrossel automático
 function startCarousel() {
   carouselInterval = setInterval(() => {
     changeSlide(1);
-  }, 4000); // Muda a cada 4 segundos
+  }, 4000);
 }
 
-// Resetar timer do carrossel
 function resetCarouselTimer() {
   clearInterval(carouselInterval);
   startCarousel();
 }
 
 // ===== FUNÇÕES DO PLAYER DE MÚSICA =====
-
-// Inicializar playlist
 function initPlaylist() {
   playlist.forEach((song, index) => {
     const item = document.createElement('div');
@@ -139,19 +107,17 @@ function initPlaylist() {
   });
 }
 
-// Carregar música
 function loadSong(index) {
   const song = playlist[index];
   audioPlayer.src = song.file;
-  currentSongDisplay.textContent = `${song.name || "Música"} ${index + 1} ${song.artist ? "- " + song.artist : ""}`;
-  
-  // Atualizar item ativo na playlist
+  currentSongDisplay.textContent =
+    `${song.name || "Música " + (index + 1)} ${song.artist ? "- " + song.artist : ""}`;
+
   document.querySelectorAll('.playlist-item').forEach((item, i) => {
     item.classList.toggle('active', i === index);
   });
 }
 
-// Tocar música
 function playSong(index) {
   if (index !== undefined) {
     currentSongIndex = index;
@@ -162,14 +128,12 @@ function playSong(index) {
   playBtn.textContent = '⏸️';
 }
 
-// Pausar música
 function pauseSong() {
   audioPlayer.pause();
   isPlaying = false;
   playBtn.textContent = '▶️';
 }
 
-// Toggle play/pause
 function togglePlay() {
   if (isPlaying) {
     pauseSong();
@@ -178,57 +142,68 @@ function togglePlay() {
   }
 }
 
-// Próxima música
 function nextSong() {
-  currentSongIndex = (currentSongIndex + 1) % playlist.length;
+  let newIndex;
+  do {
+    newIndex = Math.floor(Math.random() * playlist.length);
+  } while (newIndex === currentSongIndex && playlist.length > 1);
+
+  currentSongIndex = newIndex;
   loadSong(currentSongIndex);
   if (isPlaying) playSong();
 }
 
-// Música anterior
 function previousSong() {
   currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
   loadSong(currentSongIndex);
   if (isPlaying) playSong();
 }
 
-// Atualizar barra de progresso
 audioPlayer.addEventListener('timeupdate', () => {
   const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
   progressFill.style.width = progress + '%';
 });
 
-// Música terminou - tocar próxima
+// 🎵 Quando a música termina → escolhe outra aleatória
 audioPlayer.addEventListener('ended', () => {
   nextSong();
 });
 
-// Toggle playlist
 document.querySelector('.playlist-title').addEventListener('click', () => {
   document.querySelector('.playlist').classList.toggle('open');
 });
 
 // ===== FUNÇÕES GERAIS =====
-
-// Iniciar site
 function iniciarSite() {
   document.getElementById('introScreen').classList.add('hidden');
-  // Tentar tocar música automaticamente
-  const playPromise = audioPlayer.play();
-  if (playPromise !== undefined) {
-    playPromise.then(() => {
-      isPlaying = true;
-      playBtn.textContent = '⏸️';
-    }).catch(() => {
-      // Autoplay bloqueado - usuário precisa clicar em play
-      console.log('Autoplay bloqueado. Clique em play para iniciar a música.');
-    });
-  }
+
+  // 🔊 Som aleatório da playlist de introdução
+  const randomIntroIndex = Math.floor(Math.random() * introSounds.length);
+  const introAudio = new Audio(introSounds[randomIntroIndex].file);
+  introAudio.play();
+
+  // 🎵 Inicia playlist principal após o som de intro terminar
+  introAudio.addEventListener('ended', () => {
+    currentSongIndex = Math.floor(Math.random() * playlist.length);
+    loadSong(currentSongIndex);
+
+    const playPromise = audioPlayer.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        isPlaying = true;
+        playBtn.textContent = '⏸️';
+      }).catch(() => {
+        console.log('Autoplay bloqueado. Clique em play para iniciar a música.');
+      });
+    }
+  });
 }
 
-// Criar chuva de código
 function criarCodeRain() {
-  const symbols = ['<html>', '{...}', 'function()', 'const', 'if', 'while', '💪', '⚔️', '0101', 'async', '=>', 'class', 'return', '&&', '||'];
+  const symbols = [
+    '<html>', '{...}', 'function()', 'const', 'if', 'while',
+    '💪', '⚔️', '0101', 'async', '=>', 'class', 'return', '&&', '||'
+  ];
   const code = document.createElement('div');
   code.classList.add('code-rain');
   code.textContent = symbols[Math.floor(Math.random() * symbols.length)];
@@ -241,9 +216,7 @@ function criarCodeRain() {
   }, 8000);
 }
 
-// Inicializar quando página carregar
 window.addEventListener('load', () => {
-  shuffle(playlist); // 🔀 embaralha a playlist no início
   initPlaylist();
   loadSong(0);
   initCarouselIndicators();
