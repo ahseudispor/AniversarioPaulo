@@ -14,6 +14,21 @@ const introSounds = [
   { file: "intro2.mp3" },
   { file: "intro3.mp3" }
 ];
+// Lista de fotos do carrossel - ADICIONE SUAS FOTOS AQUI
+const carouselImages = [
+  {
+    src: "foto1.jpg",
+    caption: "Momentos"
+  },
+  {
+    src: "foto2.jpg",
+    caption: "Guerreiro  ⚔️"
+  },
+  {
+    src: "foto3.jpg",
+    caption: "Campeão 💪"
+  }
+]
 
 // ===== VARIÁVEIS =====
 let currentSongIndex = 0;
